@@ -33,8 +33,11 @@ def _terms_in(text: str) -> set[str]:
     return {term for term, pattern in _TERM_PATTERNS if pattern.search(text)}
 
 
-def match_sections(question: str, sections: dict[str, str]) -> list[str]:
-    """Return section_ids relevant to `question`, ranked by shared vocabulary terms (highest first)."""
+def _is_bare_section(section_id: str) -> bool:
+    return "." not in section_id
+
+
+def _score(question: str, sections: dict[str, str]) -> list[tuple[int, str]]:
     question_terms = _terms_in(question)
     if not question_terms:
         return []
@@ -45,8 +48,23 @@ def match_sections(question: str, sections: dict[str, str]) -> list[str]:
         if shared:
             scored.append((len(shared), section_id))
 
-    scored.sort(key=lambda pair: (-pair[0], pair[1]))
-    return [section_id for _, section_id in scored]
+    # Ties go to a dotted §N.M section over a bare §N one. A bare section
+    # (e.g. §1, a components list) tends to mention many vocabulary terms
+    # just by being a summary/container, so without this it would win ties
+    # against a genuinely relevant §N.M section purely by sorting first
+    # alphabetically — not because it's actually more relevant.
+    scored.sort(key=lambda pair: (-pair[0], _is_bare_section(pair[1]), pair[1]))
+    return scored
+
+
+def match_sections(question: str, sections: dict[str, str]) -> list[str]:
+    """Return section_ids relevant to `question`, ranked by shared vocabulary terms (highest first)."""
+    return [section_id for _, section_id in _score(question, sections)]
+
+
+def scored_matches(question: str, sections: dict[str, str]) -> list[tuple[int, str]]:
+    """Like match_sections, but keeps each section's shared-term count (for tie detection)."""
+    return _score(question, sections)
 
 
 if __name__ == "__main__":
