@@ -35,3 +35,21 @@ a genuine question joined in one sentence without a period between them
 sentence gets discarded, losing the legitimate question. Documented as
 a known limitation in SPEC.md rather than fixed, since a more surgical
 regex-substitution fix risked corrupting text on other edge cases.
+
+## Q24 AC-3 gap (matcher.py structural limit)
+Found that Q24's surviving genuine question ("How many actions do I
+take on my turn?") was abstaining despite §3.1 actually covering it —
+a real AC-3 violation, not a designed limitation. Root cause: "action"/
+"actions" simply missing from VOCABULARY. Directed one bounded attempt
+to fix via a more specific phrase; Claude Code checked §3.1's exact
+wording first and found no multi-word phrase shared between the
+rulebook's phrasing ("two actions... same action twice") and the
+question's phrasing ("how many actions... do I take") — any fix at
+the single-word level reproduces a 3-way tie with unrelated sections
+(§3.2, §5.1, §5.3, §7.2 all mention "actions"/"turn" too).
+Decided against a hand-written pattern rule for this one case (would
+be overfitting to one probe question, which the brief explicitly warns
+against) and documented it as a structural limit of keyword matching
+instead — this is the case for going back to the LLM-backed option if
+time allowed, since semantic matching would bridge this gap that pure
+lexical overlap cannot.
