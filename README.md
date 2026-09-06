@@ -39,5 +39,5 @@ No flag needed either way — `evals.sh` peeks at stdin and uses piped data if t
 
 - **SPEC.md** — design decisions, acceptance criteria, and known limitations of the matching/guardrail approach.
 - **DEFECTS.md** — problems found in RULEBOOK.md itself (contradictions, gaps), independent of the agent.
-- **NOTES.md** — see NOTES.md.
+- **NOTES.md** — reflection on the build: where I overruled the agent, where it overruled me and was right, and what I found myself that it never surfaced.
 - **LLM_DELTA.md** — this is a deterministic implementation with no runtime model call and no API key required; see LLM_DELTA.md for the evidence behind that choice.
