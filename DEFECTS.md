@@ -46,3 +46,16 @@ The only place the rulebook formally defines a bounded "round" is §6's **Storm 
 > **Sail** — move your Ship from the Open Sea to any unoccupied Dock tile on the Quay, or from a Dock tile back to the Open Sea. Only one Ship may occupy a Dock tile at a time.
 
 The action is defined as exactly two transitions: Open Sea→Dock and Dock→Open Sea. Moving directly from one occupied Dock tile to a different Dock tile is never mentioned as either allowed or disallowed. Read strictly, a single Sail action cannot accomplish a Dock-to-Dock move, and since §3.1 forbids repeating the same action twice in one turn, such a move would take a minimum of two separate turns (Dock→Open Sea, then later Open Sea→Dock) — but the rulebook never confirms this is the intended interpretation versus a simple omission, leaving a common-sense scenario ("can my Ship move to a different Dock") without a stated answer.
+
+## 5. The Lighthouse's Dock-equivalence is stated one-directionally, leaving unloading/scoring there ambiguous (§9.3 vs §5.1/§5.3/§7)
+
+§9.3:
+> A Ship at the Lighthouse is treated as being at a Dock for the purposes of §6.2.
+
+§5.1:
+> A player may unload more than two Cargo cards onto a Dock tile only if they hold the Harbourmaster token.
+
+§7.1:
+> When Cargo is unloaded onto a Dock, score each card using the table below.
+
+§9.3 grants the Lighthouse "treated as a Dock" status explicitly and only "for the purposes of §6.2" (the Storm-round discard rule). It says nothing about whether that equivalence extends to §5.1 (the unload limit), §5.3 (same-turn Trade after arriving), or §7 (scoring on unload) — all of which are written in terms of "a Dock tile," and the Lighthouse is explicitly *not* one of the twelve Dock tiles per §9.1. Read strictly, a Ship at the Lighthouse may have no textual basis for unloading or scoring Cargo there at all, since Trade (§4.4) is defined as unloading onto "that Dock tile" and the Lighthouse isn't one. This leaves a basic question — can Cargo be unloaded and scored at the Lighthouse the same way as at a Dock — without a stated answer; §9.3's narrow, single-purpose equivalence to §6.2 reads as deliberate rather than an oversight, which makes the silence on §5/§7 more likely intentional ambiguity than an omission, but the text doesn't say either way.
