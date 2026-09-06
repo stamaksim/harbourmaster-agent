@@ -53,3 +53,15 @@ against) and documented it as a structural limit of keyword matching
 instead — this is the case for going back to the LLM-backed option if
 time allowed, since semantic matching would bridge this gap that pure
 lexical overlap cannot.
+
+## evals.sh didn't actually support the pipe idiom mutator.py expects
+Claude Code initially reported "all 9 mutations correctly caught" but
+this was tested via a private AGENT_OUTPUT_JSONL env var it wired in
+itself, not via the actual pipe idiom mutator.py's usage comment
+describes (`./run.real.sh | python3 mutator.py <name>`). I asked
+directly whether evals.sh itself supports being piped a mutated
+stream — it didn't (evals.sh just ran pytest with no stdin handling).
+Had it fixed properly: test_agent.py now reads from stdin when piped,
+falling back to running run.sh fresh otherwise, so the real reviewer
+command `cat probe.jsonl | ./run.sh | python3 mutator.py <name> |
+./evals.sh` works end to end.
