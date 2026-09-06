@@ -1,9 +1,10 @@
 # trace/DIRECTION.md
 
-This project's agent-direction trace is the full chat conversation used
-to build it (Claude in a browser, directing Claude Code in PyCharm for
-the actual file edits). Screenshots of the Claude Code session are
-embedded throughout. Below are pointers to the three required examples.
+This project's agent-direction trace is `trace/claude-code-session.txt`
+— the full Claude Code terminal session export, covering every file
+written in agent/, evals/, and the evals.sh stdin fix. Below are
+pointers to the three required examples within it (search by the
+quoted phrases to find the exact point in the session).
 
 ## 1. Where I overruled the agent on substance
 
